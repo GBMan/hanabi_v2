@@ -1,0 +1,72 @@
+// Fontes
+$font-path:"../../fonts/";
+
+// Riffic bold
+$font-riffic:"riffic-bold";
+$font-name:$font-riffic;
+$svg-anchor:"rifficbold";
+@font-face {
+    font-family: $font-name;
+    src: url($font-path+$font-name+'.eot');
+    src: url($font-path+$font-name+'.woff2') format('woff2'),
+         url($font-path+$font-name+'.eot?') format('eot'),
+         url($font-path+$font-name+'.woff') format('woff'),
+         url($font-path+$font-name+'.ttf') format('truetype'),
+         url($font-path+$font-name+'.svg#'+$svg-anchor) format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+// Picto
+$font-picto:"picto";
+$font-name:$font-picto;
+$svg-anchor:"picto";
+@font-face {
+    font-family: $font-name;
+    src: url($font-path+$font-name+'.eot');
+    src: url($font-path+$font-name+'.eot?') format('eot'),
+         url($font-path+$font-name+'.woff') format('woff'),
+         url($font-path+$font-name+'.ttf') format('truetype'),
+         url($font-path+$font-name+'.svg#'+$svg-anchor) format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+[class*='icon-']:before {
+    display: inline-block;
+    font-family: $font-picto;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+.icon-down:before{content:'A';}
+.icon-up:before{content:'B';}
+.icon-left:before{content:'C';}
+.icon-right:before{content:'D';}
+.icon-facebook:before{content:'E';}
+.icon-instagram:before{content:'F';}
+.icon-linkedin:before{content:'G';}
+.icon-twitter:before{content:'H';}
+.icon-valid:before{content:'I';}
+.icon-cancel:before{content:'J';}
+.icon-close:before{content:'K';}
+.icon-marker:before{content:'L';}
+.icon-bin:before{content:'M';}
+.icon-reload:before{content:'N';}
+.icon-star-empty:before{content:'O';}
+.icon-star-half:before{content:'P';}
+.icon-star-full:before{content:'Q';}
+.icon-square-empty:before{content:'R';}
+.icon-square-full:before{content:'S';}
+.icon-square-valid:before{content:'T';}
+.icon-circle-empty:before{content:'U';}
+.icon-circle-half:before{content:'V';transform:scaleX(-1);}
+.icon-circle-full:before{content:'W';}
+.icon-backward:before{content:'X';}
+.icon-caddy:before{content:'Y';}
+.icon-sound-off:before{content:'Z';}
+.icon-sound-on:before{content:'a';}
+
+// Arial
+$font-text: Arial, Helvetica, sans-serif;

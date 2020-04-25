@@ -1,0 +1,51 @@
+@import-normalize;
+@import './config/config.scss';
+@import './config/fonts.scss';
+@import './config/colors.scss';
+@import './elements/buttons.scss';
+@import './components/header.scss';
+@import './components/card.scss';
+@import './components/hand-card.scss';
+@import './components/player.scss';
+@import './components/modals.scss';
+
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size:$font-size;
+}
+
+body {
+  background-color: $app-bg;
+  font-family: $font-riffic, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+}
+
+h2 {
+  color: $blue;
+  font-weight: normal;
+  margin: 0 0 1rem;
+  text-shadow: 0 0 .4rem $shadow-titles;
+}
+h3 {
+  color: $yellow;
+  font-weight: normal;
+  text-shadow: 0 0 .3rem $shadow-titles;
+}
+
+ul {
+  padding-left: 1rem;
+}
+
+.app--players-container {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, 300px);
+  padding: .5rem;
+  justify-content: center;
+}

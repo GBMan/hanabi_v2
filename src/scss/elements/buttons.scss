@@ -1,0 +1,145 @@
+.btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: $font-riffic;
+    font-size: inherit;
+    outline: none;
+}
+
+
+.btn-standard {
+    --distance: .1rem;
+    --blur: .2rem;
+    --glow: 0;
+    --col-background-center: hsl(200, 100%, 50%);
+    --col-background-border: hsl(200, 100%, 50%);
+    --col-light: hsl(200, 100%, 70%);
+    --col-dark: hsl(200, 100%, 30%);
+
+    align-self: center;
+    background: radial-gradient(ellipse at center, var(--col-background-center), var(--col-background-border));
+    border-radius: .5rem;
+    box-shadow: inset var(--distance) var(--distance) var(--blur) var(--col-light), inset calc(var(--distance) * -1) calc(var(--distance) * -1) var(--blur) var(--col-dark), 0 0 var(--glow) hsl(200, 100%, 60%);
+    height: 30px;
+    margin: 0;
+    min-width: 130px;
+    padding: .25rem .5rem;
+    transition-property: box-shadow, color;
+    transition-duration: .3s;
+    &:hover {
+        --col-light: hsl(200, 100%, 80%);
+        --col-background-center: var(--col-light);
+        --col-dark: hsl(200, 100%, 40%);
+        --glow: .7rem;
+        color: rgba(0,0,0,.7);
+        text-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+    }
+}
+
+.round-btn {
+    --dim: 40px;
+    --col-background-center: #aaa;
+    --col-background-border: #aaa;
+    --col-light: #ddd;
+    --col-dark: #888;
+    --col-glow: #fff;
+    --distance: .1rem;
+    --blur: .2rem;
+    --glow: 0;
+    --font-size: 1.2rem;
+
+    align-content: center;
+    background: radial-gradient(ellipse at center, var(--col-background-center), var(--col-background-border));
+    border-radius: 50%;
+    box-shadow: inset var(--distance) var(--distance) var(--blur) var(--col-light), inset calc(var(--distance) * -1) calc(var(--distance) * -1) var(--blur) var(--col-dark), 0 0 var(--glow) var(--col-glow);
+    display: grid;
+    font-size: var(--font-size);
+    height: var(--dim);
+    justify-content: center;
+    transition-property: box-shadow, color;
+    transition-duration: .3s;
+    width: var(--dim);
+
+
+    &:hover {
+        --col-background-center: #eee;
+        --col-background-border: #bbb;
+        --col-light: #eee;
+        --col-dark: #777;
+        --glow: .6rem;
+        color: rgba(0,0,0,.7);
+        text-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+    }
+    
+    &.blue {
+        --tint: 201;
+        --col-background-center: hsl(var(--tint), 100%, 47%);
+        --col-background-border: hsl(var(--tint), 100%, 47%);
+        --col-light: hsl(var(--tint), 100%, 67%);
+        --col-dark: hsl(var(--tint), 100%, 27%);
+        --col-glow: hsl(var(--tint), 100%, 67%);
+        &:hover {
+            --col-background-center: hsl(var(--tint), 100%, 87%);
+            --col-background-border: hsl(var(--tint), 100%, 67%);
+            --col-light: hsl(var(--tint), 100%, 87%);
+            --col-dark: hsl(var(--tint), 100%, 47%);
+        }
+    }
+    &.green {
+        --tint: 120;
+        --col-background-center: hsl(var(--tint), 100%, 37%);
+        --col-background-border: hsl(var(--tint), 100%, 37%);
+        --col-light: hsl(var(--tint), 100%, 57%);
+        --col-dark: hsl(var(--tint), 100%, 17%);
+        --col-glow: hsl(var(--tint), 100%, 57%);
+        &:hover {
+            --col-background-center: hsl(var(--tint), 100%, 85%);
+            --col-background-border: hsl(var(--tint), 100%, 57%);
+            --col-light: hsl(var(--tint), 100%, 85%);
+            --col-dark: hsl(var(--tint), 100%, 37%);
+        }
+    }
+    &.red {
+        --tint: 0;
+        --col-background-center: hsl(var(--tint), 100%, 47%);
+        --col-background-border: hsl(var(--tint), 100%, 47%);
+        --col-light: hsl(var(--tint), 100%, 90%);
+        --col-dark: hsl(var(--tint), 100%, 27%);
+        --col-glow: hsl(var(--tint), 100%, 50%);
+        &:hover {
+            --col-background-center: hsl(var(--tint), 100%, 70%);
+            --col-background-border: hsl(var(--tint), 100%, 50%);
+            --col-light: hsl(var(--tint), 100%, 80%);
+            --col-dark: hsl(var(--tint), 100%, 40%);
+        }
+    }
+    &.white {
+        --tint: 0;
+        --col-background-center: hsl(var(--tint), 0%, 90%);
+        --col-background-border: hsl(var(--tint), 0%, 90%);
+        --col-light: hsl(var(--tint), 0%, 95%);
+        --col-dark: hsl(var(--tint), 0%, 60%);
+        --col-glow: hsl(var(--tint), 0%, 100%);
+        &:hover {
+            --col-background-center: hsl(var(--tint), 0%, 100%);
+            --col-background-border: hsl(var(--tint), 0%, 90%);
+            --col-light: hsl(var(--tint), 0%, 100%);
+            --col-dark: hsl(var(--tint), 0%, 70%);
+        }
+    }
+    &.yellow {
+        --tint: 51;
+        --col-background-center: hsl(var(--tint), 100%, 47%);
+        --col-background-border: hsl(var(--tint), 100%, 47%);
+        --col-light: hsl(var(--tint), 100%, 67%);
+        --col-dark: hsl(var(--tint), 100%, 27%);
+        --col-glow: hsl(var(--tint), 100%, 67%);
+        &:hover {
+            --col-background-center: hsl(var(--tint), 100%, 87%);
+            --col-background-border: hsl(var(--tint), 100%, 67%);
+            --col-light: hsl(var(--tint), 100%, 87%);
+            --col-dark: hsl(var(--tint), 100%, 47%);
+        }
+    }
+}

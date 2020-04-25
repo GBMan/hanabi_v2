@@ -1,0 +1,62 @@
+.header {
+    background: $header-bg;
+    box-shadow: 0 5px 5px $dark-60;
+    display: grid;
+    grid-template-areas: "infos board actions";
+    position: sticky;
+    width: 100%;
+
+    &--board {
+        align-items: center;
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(5, 1fr);
+        grid-area: board;
+        justify-content: center;
+        justify-items: center;
+        padding: .25rem;
+    }
+    &--infos {
+        display: grid;
+        grid-area: infos;
+        grid-template-columns: repeat(2, 1fr);
+        padding: .25rem;
+        div {
+            align-self: center;
+            margin: .25rem;
+            min-width: 80px;
+        }
+    }
+    &--actions {
+        display: grid;
+        grid-area: actions;
+        grid-template-columns: repeat(2, 1fr);
+        padding: .25rem;
+    }
+
+    .btn-standard {
+        margin: .25rem;
+    }
+}
+
+@media screen and (min-width:500px) and (max-width:900px) {
+    .header {
+        grid-template-areas: "infos actions"
+                             "board board";
+
+        &--board {
+            padding-bottom: .5rem;
+        }
+    }
+}
+@media screen and (max-width:500px) {
+    .header {
+        grid-template-areas: "infos"
+                             "actions"
+                             "board";
+
+        &--board {
+            padding-bottom: .5rem;
+        }
+    }
+}

@@ -1,0 +1,26 @@
+.player {
+    border-radius: .5rem;
+    margin: .5rem;
+    padding: 1rem;
+    &.active {
+        background: $second;
+    }
+    &--name {
+        margin-bottom: .25rem;
+    }
+    &--hand {
+        display: flex;
+        justify-content: space-between;
+        margin: .25rem 0;
+    }
+    &--value-container {
+        display: flex;
+        justify-content: space-between;
+        margin: .25rem 0;
+    }
+    &--color-container {
+        display: flex;
+        justify-content: space-between;
+        margin: .25rem 0;
+    }
+}

@@ -1,0 +1,33 @@
+// Neighbor Palette
+// #9B1D17
+// #D19F9F
+// #A96466
+// #574141
+
+// Palette
+$main: #555;
+$second: hsl(0, 0%, 53%);
+$clear: #eee;
+$dark: #222;
+$dark-90: rgba(34, 34, 34, 0.9); // rgb(34, 34, 34) = #222222 ($dark)
+$dark-60: rgba(34, 34, 34, 0.6); // rgb(34, 34, 34) = #222222 ($dark)
+$dark-30: rgba(34, 34, 34, 0.3); // rgb(34, 34, 34) = #222222 ($dark)
+$dark-0: rgba(34, 34, 34, 0); // rgb(34, 34, 34) = #222222 ($dark)
+$black-50: rgba(0, 0, 0, .5);
+$blue: hsl(201, 100%, 47%);
+$green: hsl(120, 100%, 37%);
+$grey: $second;
+$red: hsl(0, 100%, 47%);
+$white: #fff;
+$yellow: hsl(51, 100%, 47%);
+
+// Couleurs zonées
+$default-txt: $main;
+
+$app-bg: #ddd;
+
+$header-bg: $second;
+$header-txt: $clear;
+$shadow-titles: $black-50;
+$footer-bg: $dark;
+$footer-txt: $clear;
