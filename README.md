@@ -69,6 +69,10 @@ Reload the computer
 
 ### Create New App
 `https://dashboard.heroku.com/`
+Go to the Settings tab
+Click "Add buildpack"
+Enter the following Buildpack URL: `https://github.com/mars/create-react-app-buildpack`
+Save changes
 
 ### Create the remote on Heroku
 Assuming the git repository is already created.
