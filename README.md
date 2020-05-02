@@ -1,46 +1,38 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a simulation of the card game Hanabi made by Antoine Bauza.
 
-## Available Scripts
+The IA is under development, but the game is a playable by human players.
 
-In the project directory, you can run:
+# INSTALL
 
-### `npm start`
+## Setup with
+`npm init -y`
+`npx create-react-app`
+`npm i underscore`
+`npm i --save-dev node-sass`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Install
+`npm i`
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
 
-### `npm test`
+# RUN
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Live reload
+`npm start`
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
+## Prod build
+`npm run build`
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+## Progressive Web App
+See here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
 
 ### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+See here: https://facebook.github.io/create-react-app/docs/deployment
 
 
-### First time
+# GIT
+
+## First time
 `git add *`
 Add the new files and modifications.
 
@@ -53,7 +45,7 @@ Prepare the package to send with a description.
 `git push -u origin master`
 Push the datas on git.
 
-### Next times
+## Next times
 `git add *`
 Add the new files and modifications.
 
@@ -63,6 +55,36 @@ Prepare the package to send with a description.
 `git push`
 Push the datas on git.
 
+
+# HEROKU
+
+## Setup
+
+### Create account
+`https://www.heroku.com/`
+
+### Install cli
+`https://devcenter.heroku.com/articles/heroku-cli`
+Reload the computer
+
+### Create New App
+`https://dashboard.heroku.com/`
+
+### Create the remote on Heroku
+Assuming the git repository is already created.
+`heroku git:remote -a gb-hanabi`
+
+## Deploy
+### Connection in the terminal
+`heroku login`
+Open a web page in a browser for connection
+
+### Deploy the files
+`git push heroku master`
+Push the last git project version git on Heroku.
+
+
+# MISC
 
 ## Fonts
 Pictos gets on http://glyphter.com
