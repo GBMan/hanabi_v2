@@ -1,7 +1,7 @@
 .player {
     border-radius: .5rem;
-    margin: .5rem;
-    padding: 1rem;
+    margin: 0;
+    padding: .5rem;
     &.active {
         background: $second;
     }
@@ -11,7 +11,7 @@
     &--hand {
         display: flex;
         justify-content: space-between;
-        margin: .25rem 0;
+        margin: .25rem 0 0;
     }
     &--value-container {
         display: flex;
@@ -22,5 +22,16 @@
         display: flex;
         justify-content: space-between;
         margin: .25rem 0;
+    }
+}
+
+@media screen and (min-width:500px) and (max-width:900px) {
+    .player {
+        margin: .5rem;
+        padding: 1rem;
+    }
+}
+@media screen and (max-width:500px) {
+    .player {
     }
 }

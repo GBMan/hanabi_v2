@@ -61,8 +61,8 @@
             margin-bottom: .5rem;
         }
         .round-btn {
-            --dim: 25px;
-            --font-size: 1rem;
+            --dim: 35px;
+            --font-size: 1.2rem;
             --blur: .1rem;
             --distance: .05rem;
 
@@ -76,6 +76,8 @@
                 cursor: default;
             }
             &:hover {
+                color: rgba(0,0,0, 1);
+                text-shadow: none;
             }
         }
     }
@@ -94,6 +96,7 @@
     }
     &-rules {
         &--content {
+            height: calc(100vh - 9rem);
             overflow: auto;
             padding-right: .5rem;
             text-align: justify;

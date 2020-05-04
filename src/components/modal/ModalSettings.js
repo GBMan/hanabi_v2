@@ -20,7 +20,7 @@ export default function ModalSettings(props) {
         }}>{i+1}</button>)
     }
 
-    for (let i=0; i<modalNbPlayers; i++) {
+    for (let i=0; i<=modalNbPlayers; i++) {
         btnsNbIAsElt.push(<button key={i} className={`btn round-btn ${(i === modalNbIAs) ? "selected" : ""}`} onClick={(event) => {setModalNbIAs(i)}}>{i}</button>)
     }
 

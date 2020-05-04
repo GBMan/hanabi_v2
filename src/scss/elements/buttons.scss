@@ -38,7 +38,7 @@
 }
 
 .round-btn {
-    --dim: 40px;
+    --dim: 50px;
     --col-background-center: #aaa;
     --col-background-border: #aaa;
     --col-light: #ddd;
@@ -47,7 +47,7 @@
     --distance: .1rem;
     --blur: .2rem;
     --glow: 0;
-    --font-size: 1.2rem;
+    --font-size: 1.4rem;
 
     align-content: center;
     background: radial-gradient(ellipse at center, var(--col-background-center), var(--col-background-border));

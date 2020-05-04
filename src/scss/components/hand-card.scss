@@ -9,12 +9,19 @@
         grid-column: 1/3;
     }
 
-    &--valid {
-        color: $green;
+    &--valid,
+    &--cancel {
+        // background-color: rgba(255,255,255,.2);
         font-family: $font-picto;
-        font-size: 1.15rem;
+        height: 1.25rem;
+        text-align: center;
         transition-property: box-shadow, color;
         transition-duration: .3s;
+        width: 1.5rem;
+    }
+    &--valid {
+        color: $green;
+        font-size: 1.15rem;
 
         &:hover {
             color: hsl(120, 100%, 57%);
@@ -23,9 +30,6 @@
     }
     &--cancel {
         color: $red;
-        font-family: $font-picto;
-        transition-property: box-shadow, color;
-        transition-duration: .3s;
 
         &:hover {
             color: hsl(10, 100%, 87%);

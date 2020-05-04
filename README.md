@@ -74,6 +74,10 @@ Click "Add buildpack"
 Enter the following Buildpack URL: `https://github.com/mars/create-react-app-buildpack`
 Save changes
 
+try `https://buildpack-registry.s3.amazonaws.com/buildpacks/mars/create-react-app.tgz`
+
+try `heroku buildpacks:set https://github.com/mars/create-react-app-buildpack.git`
+
 ### Create the remote on Heroku
 Assuming the git repository is already created.
 `heroku git:remote -a gb-hanabi`
