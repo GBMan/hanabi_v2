@@ -65,18 +65,20 @@ export default function App() {
 
   useEffect(() => {
     //console.log(`%cpiles a changé`, "color:#f00")
-    let newPoints = 0
-    const nb = colors.length
-    for (let i=0; i<nb; i++) {
-      if (piles[colors[i]]) {
-        newPoints += piles[colors[i]].length
+    if (gameStarted && !cancelInvolved) {
+      let newPoints = 0
+      const nb = colors.length
+      for (let i=0; i<nb; i++) {
+        if (piles[colors[i]]) {
+          newPoints += piles[colors[i]].length
+        }
       }
+      setPoints(newPoints)
     }
-    setPoints(newPoints)
   }, [piles])
 
   useEffect(() => {
-    if (deck.length === 50 && nbPlayers > 0) {
+    if (nbPlayers > 0) {
       // console.log("%cDistribution", "color:#f00")
       const tempDeck = [...deck]
       const newHands = []
@@ -94,20 +96,20 @@ export default function App() {
       setDeck(tempDeck)
       setGameStarted(true)
     }
-  }, [nbPlayers, deck])
+  }, [nbPlayers])
 
   useEffect(() => {
-    if (gameStarted && !cancelInvolved)
+    if (gameStarted && !cancelInvolved) {
       endTurn()
-  }, [errors, points, discard])
+    }
+  }, [points, discard])
 
   useEffect(() => {
-
-    if (nbPlayers - nbIAs > 1) {
-      if (nbPlayers - nbIAs > turn) {
-        setModalReady(true)
-      } 
+    if (humanTurn()) {
+      setModalReady(true)
     }
+
+    // On enlève le verrou de retour en arrière de l'historique
     setCancelInvolved(false)
   }, [turn, nbPlayers, nbIAs])
 
@@ -120,19 +122,15 @@ export default function App() {
 
     const prevTurn = history.pop()
 
+    setPiles(prevTurn.piles)
+    setPoints(prevTurn.points)
     setHints(prevTurn.hints)
     setErrors(prevTurn.errors)
     setHands(prevTurn.hands)
     setDiscard(prevTurn.discard)
     setDeck(prevTurn.deck)
-    setPiles(prevTurn.piles)
-
-    if (turn === 0) {
-      setTurn(nbPlayers-1)
-    }
-    else {
-      setTurn((prevTurn) => {return prevTurn-1})
-    }
+    setTurn(prevTurn.turn)
+    setLastTurn(prevTurn.lastTurn)
   }
   function handleDiscard() {
     setModalDiscard(true)
@@ -179,7 +177,7 @@ export default function App() {
   function handleClickValue(id, value) {
     const deepHands = JSON.parse(JSON.stringify(hands))
     const deepPiles = JSON.parse(JSON.stringify(piles))
-    setHistory((history) => {return [...history, {hints:hints, errors:errors, hands:deepHands, discard:[...discard], deck:[...deck], piles:deepPiles}]})
+    setHistory((history) => {return [...history, {hints:hints, errors:errors, hands:deepHands, discard:[...discard], deck:[...deck], piles:deepPiles, turn:turn, lastTurn:lastTurn, points:points}]})
     if (hints > 0) {
       setHints(hints-1)
     }
@@ -188,7 +186,7 @@ export default function App() {
   function handleClickColor(id, color) {
     const deepHands = JSON.parse(JSON.stringify(hands))
     const deepPiles = JSON.parse(JSON.stringify(piles))
-    setHistory((history) => {return [...history, {hints:hints, errors:errors, hands:deepHands, discard:[...discard], deck:[...deck], piles:deepPiles}]})
+    setHistory((history) => {return [...history, {hints:hints, errors:errors, hands:deepHands, discard:[...discard], deck:[...deck], piles:deepPiles, turn:turn, lastTurn:lastTurn, points:points}]})
     if (hints > 0) {
       setHints(hints-1)
     }
@@ -197,7 +195,7 @@ export default function App() {
   function handleClickValid(id, position) {
     const deepHands = JSON.parse(JSON.stringify(hands))
     const deepPiles = JSON.parse(JSON.stringify(piles))
-    setHistory((history) => {return [...history, {hints:hints, errors:errors, hands:deepHands, discard:[...discard], deck:[...deck], piles:deepPiles}]})
+    setHistory((history) => {return [...history, {hints:hints, errors:errors, hands:deepHands, discard:[...discard], deck:[...deck], piles:deepPiles, turn:turn, lastTurn:lastTurn, points:points}]})
     let tempHands = [...hands]
     const playedCard = tempHands[id].splice(position, 1)[0]
     const newCard = draw()
@@ -209,14 +207,12 @@ export default function App() {
     if (success && playedCard.value === 5) {
       setHints(hints+1)
     }
-    // setHistory((history) => {return [...history, {action:"play", player:id, position:position, success:success}]})
+    // endTurn()  // Dans ce cas la fin de tour sera déclenchée par la modification de la pile de jeu ou de la défausse
   }
   function handleClickCancel(id, position) {
-    // setHistory((history) => {return [...history, {action:"discard", player:id, position:position}]})
-    // console.log("Les mains", JSON.parse(JSON.stringify(hands)))
     const deepHands = JSON.parse(JSON.stringify(hands))
     const deepPiles = JSON.parse(JSON.stringify(piles))
-    setHistory((history) => {return [...history, {hints:hints, errors:errors, hands:deepHands, discard:[...discard], deck:[...deck], piles:deepPiles}]})
+    setHistory((history) => {return [...history, {hints:hints, errors:errors, hands:deepHands, discard:[...discard], deck:[...deck], piles:deepPiles, turn:turn, lastTurn:lastTurn, points:points}]})
     let tempHands = [...hands]
     const discardedCard = tempHands[id].splice(position, 1)[0]
     discardCard(discardedCard)
@@ -228,7 +224,7 @@ export default function App() {
     if (hints < maxHints) {
       setHints(hints+1)
     }
-    // endTurn()
+    // endTurn()  // Dans ce cas la fin de tour sera déclenchée par la modification de la défausse
   }
 
   // ### Shared actions
@@ -249,6 +245,7 @@ export default function App() {
     setModalSettings(alreadyCome)
   }
   function endTurn() {
+    console.log("endTurn", points, errors, lastTurn, nbPlayers)
     switch (true) {
       case (points === 25) :
         setGameStarted(false)
@@ -305,6 +302,16 @@ export default function App() {
     const card = tempDeck.pop()
     setDeck(tempDeck)
     return card
+  }
+
+  // ### Conceptual actions
+  function humanTurn() {
+    if (nbPlayers - nbIAs > 1) {
+      if (nbPlayers - nbIAs > turn) {
+        return true
+      } 
+    }
+    return false
   }
 
   return (

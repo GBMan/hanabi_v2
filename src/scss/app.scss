@@ -49,16 +49,12 @@ ul {
   justify-content: stretch;
 }
 
-@media screen and (min-width:500px) and (max-width:900px) {
+@media screen and (min-width:500px) {
     .app--players-container {
       display: grid;
       gap: 1rem;
-      grid-template-columns: repeat(auto-fit, 300px);
+      grid-template-columns: repeat(auto-fit, 320px);
       padding: .5rem;
       justify-content: center;
-    }
-}
-@media screen and (max-width:500px) {
-    .app--players-container {
     }
 }
