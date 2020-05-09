@@ -105,12 +105,10 @@ export default function App() {
   }, [points, discard])
 
   useEffect(() => {
-    if (humanTurn()) {
-      setModalReady(true)
-    }
-
     // On enlève le verrou de retour en arrière de l'historique
     setCancelInvolved(false)
+    
+    startTurn()
   }, [turn, nbPlayers, nbIAs])
 
   // ### Header actions
@@ -238,11 +236,21 @@ export default function App() {
     setDiscard([])
     setHands([])
     setNbPlayers(0)
+    setPoints(0)
     setErrors(0)
     setLastTurn(-1)
     setTurn(0)
     setHints(maxHints)
     setModalSettings(alreadyCome)
+  }
+  function startTurn() {
+    if (humanTurn()) {
+      setModalReady(true)
+    }
+    else {
+      console.log("%cOn va prendre une décision...", "color:red")
+      
+    }
   }
   function endTurn() {
     console.log("endTurn", points, errors, lastTurn, nbPlayers)
