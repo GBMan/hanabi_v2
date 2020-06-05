@@ -4,6 +4,7 @@ import { tabHandsCards, maxHints, buildDeck, buildPiles, colors } from '../datas
 import Header from './Header'
 import Player from './Player'
 import Modals from './modal/Modals'
+import GameAnalysis from '../brain/GameAnalysis'
 
 export const HanabiContext = React.createContext();
 
@@ -173,21 +174,19 @@ export default function App() {
 
   // ### Game actions
   function handleClickValue(id, value) {
+    if (hints === 0) return
     const deepHands = JSON.parse(JSON.stringify(hands))
     const deepPiles = JSON.parse(JSON.stringify(piles))
     setHistory((history) => {return [...history, {hints:hints, errors:errors, hands:deepHands, discard:[...discard], deck:[...deck], piles:deepPiles, turn:turn, lastTurn:lastTurn, points:points}]})
-    if (hints > 0) {
-      setHints(hints-1)
-    }
+    setHints(hints-1)
     endTurn()
   }
   function handleClickColor(id, color) {
+    if (hints === 0) return
     const deepHands = JSON.parse(JSON.stringify(hands))
     const deepPiles = JSON.parse(JSON.stringify(piles))
     setHistory((history) => {return [...history, {hints:hints, errors:errors, hands:deepHands, discard:[...discard], deck:[...deck], piles:deepPiles, turn:turn, lastTurn:lastTurn, points:points}]})
-    if (hints > 0) {
-      setHints(hints-1)
-    }
+    setHints(hints-1)
     endTurn()
   }
   function handleClickValid(id, position) {
@@ -225,7 +224,7 @@ export default function App() {
     // endTurn()  // Dans ce cas la fin de tour sera déclenchée par la modification de la défausse
   }
 
-  // ### Shared actions
+  // ### Multiple time used actions
 
   function initNewGame() {
     setCancelInvolved(false)
@@ -249,7 +248,7 @@ export default function App() {
     }
     else {
       console.log("%cOn va prendre une décision...", "color:red")
-      
+      startIADecision()
     }
   }
   function endTurn() {
@@ -320,6 +319,31 @@ export default function App() {
       } 
     }
     return false
+  }
+
+  // ### IA decisions
+  function startIADecision() {
+    if (hints === 0) {
+      // Play or discard
+      iaPlayOrDiscard()
+    }
+    else if (hints === 1) {
+      // Check if next player have something to play or discard
+      // If not then play or discard
+      // If he have something then check following player
+    } 
+    else {
+      // Give hint if possible
+      // If not then play or discard
+    }
+  }
+
+  function iaPlayOrDiscard() {
+    const currentHand = new GameAnalysis(hands[turn])
+    // const bestPlayableCard = currentHand.getBestPlayableCard()
+  }
+
+  function getBestPlayableCard() {
   }
 
   return (
