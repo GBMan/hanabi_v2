@@ -21,13 +21,6 @@ The IA is under development, but the game is a playable by human players.
 
 ## Prod build
 `npm run build`
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-## Progressive Web App
-See here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Deployment
-See here: https://facebook.github.io/create-react-app/docs/deployment
 
 
 # GIT

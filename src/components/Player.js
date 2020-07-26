@@ -19,7 +19,7 @@ export default function Player(props) {
     const hand = hands[id]
 
     function onClickValue(value) {
-        handleClickValue(id, value)
+        if (!handleClickValue(id, value)) return
         hand.forEach((card) => {
             if (card.value === value) {
                 card.hintValue = value
@@ -30,7 +30,7 @@ export default function Player(props) {
         })
     }
     function onClickColor(color) {
-        handleClickColor(id, color)
+        if (!handleClickColor(id, color)) return
         hand.forEach((card) => {
             if (card.color === color) {
                 card.hintColor = color
