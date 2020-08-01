@@ -18,7 +18,7 @@ export const tabHandsCards = [
 export const maxHints = 8;
 export const maxNbPlayers = 5;
 export const defaultNbPlayers = 3;
-export const defaultNbIAs = 0;  //###IA###
+export const defaultNbIAs = 2;  // 0 ###IA###
 export const plagePrestations = [
     {valueMax:5, text:"Horrible, huées de la foule..."},
     {valueMax:10, text:"Médiocre, à peine quelques applaudissements."},

@@ -5,7 +5,7 @@ import Header from './Header'
 import Player from './Player'
 import Modals from './modal/Modals'
 // import GameAnalysis from '../brain/GameAnalysis'
-import gsap from 'gsap'
+// import gsap from 'gsap'
 
 export const HanabiContext = React.createContext();
 
@@ -203,27 +203,28 @@ export default function App() {
     setHistory((history) => {return [...history, {hints:hints, errors:errors, hands:deepHands, discard:[...discard], deck:[...deck], piles:deepPiles, turn:turn, lastTurn:lastTurn, points:points}]})
     const nthPlayer = id+1
     // console.log(`id: ${nthPlayer}, position: ${position+1}`)
-    const timeline = gsap.timeline({defaults: {duration: .3}, onComplete:() => {handleClickValidAfterAnim(id, position)}})
-    timeline.to(`.player:nth-of-type(${nthPlayer})>.player--hand>.hand-card:nth-of-type(${(position+1)})`, {y: -10, opacity: .1, ease: 'power1.out'})
-    for (let i=position+2; i<=nbCardsUseRef.current; i++) {
-      timeline.to(`.player:nth-of-type(${nthPlayer})>.player--hand>.hand-card:nth-of-type(${i})`, {x:-50})
+    // ###GSAP###
+    // const timeline = gsap.timeline({defaults: {duration: .3}, onComplete:() => {handleClickValidAfterAnim(id, position)}})
+    // timeline.to(`.player:nth-of-type(${nthPlayer})>.player--hand>.hand-card:nth-of-type(${(position+1)})`, {y: -10, opacity: .1, ease: 'power1.out'})
+    // for (let i=position+2; i<=nbCardsUseRef.current; i++) {
+    //   timeline.to(`.player:nth-of-type(${nthPlayer})>.player--hand>.hand-card:nth-of-type(${i})`, {x:-50})
+    // }
+    let tempHands = [...hands]
+    const playedCard = tempHands[id].splice(position, 1)[0]
+    const newCard = draw()
+    if (newCard) {
+      tempHands[id].push(newCard)
     }
-    // let tempHands = [...hands]
-    // const playedCard = tempHands[id].splice(position, 1)[0]
-    // const newCard = draw()
-    // if (newCard) {
-    //   tempHands[id].push(newCard)
-    // }
-    // setHands(tempHands)
-    // const success = playCardOnTheBoard(playedCard)
-    // if (success && playedCard.value === 5) {
-    //   setHints(hints+1)
-    // }
+    setHands(tempHands)
+    const success = playCardOnTheBoard(playedCard)
+    if (success && playedCard.value === 5) {
+      setHints(hints+1)
+    }
     // endTurn()  // Dans ce cas la fin de tour sera déclenchée par la modification de la pile de jeu ou de la défausse
   }
   function handleClickValidAfterAnim(id, position) {
     return
-    // ###ANIM###
+    // ###GSAP###
     // gsap.to(`.player:nth-of-type(${(id+1)})>.player--hand>.hand-card:nth-of-type(${(position+1)})`, {duration: 0, y: 0, opacity: 1})
     // let tempHands = [...hands]
     // const playedCard = tempHands[id].splice(position, 1)[0]
@@ -320,19 +321,19 @@ export default function App() {
         break
     }
   }
-  // function playCardOnTheBoard(card) {
-  //   let newPiles = {...piles}
-  //   if (newPiles[card.color].length + 1 === card.value) {
-  //     newPiles[card.color].push(card)
-  //     setPiles(newPiles)
-  //     return true
-  //   }
-  //   else {
-  //     setErrors((errors) => {return errors+1})
-  //     discardCard(card)
-  //     return false
-  //   }
-  // }
+  function playCardOnTheBoard(card) {
+    let newPiles = {...piles}
+    if (newPiles[card.color].length + 1 === card.value) {
+      newPiles[card.color].push(card)
+      setPiles(newPiles)
+      return true
+    }
+    else {
+      setErrors((errors) => {return errors+1})
+      discardCard(card)
+      return false
+    }
+  }
   function discardCard(card) {
     let tempDiscard = [...discard]
     tempDiscard.push(card)
