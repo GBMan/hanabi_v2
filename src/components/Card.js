@@ -6,7 +6,7 @@ export default function Card(props) {
         color="grey", 
         hintColor="none",
         hintValue,
-        card
+        // card
     } = props
 
     return (

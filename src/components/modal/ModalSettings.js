@@ -14,8 +14,7 @@ export default function ModalSettings(props) {
 
     for (let i=1; i<maxNbPlayers; i++) {
         btnsNbPlayersElt.push(<button key={i} className={`btn round-btn ${(i+1 === modalNbPlayers) ? "selected" : ""}`} onClick={(event) => {
-            // setModalNbIAs(Math.min(modalNbIAs, i))
-            setModalNbIAs(i)
+            // setModalNbIAs(i) //###IA###
             setModalNbPlayers(i+1)
         }}>{i+1}</button>)
     }
@@ -35,13 +34,14 @@ export default function ModalSettings(props) {
                     </div>
                     <span> joueurs</span>
                 </div>
-                <div className="modal-settings--line">
+                {/* ###IA###  */}
+                {/* <div className="modal-settings--line">
                     <span>dont </span> 
                     <div className="modal-settings--nb-ias">
                         {btnsNbIAsElt}
                     </div>
                     <span> IAs.</span>
-                </div>
+                </div> */}
                 <button className="btn btn-standard" onClick={(event) => {call(modalNbPlayers, modalNbIAs)}}>Jouer</button>
             </div>
         </div>

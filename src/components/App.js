@@ -4,7 +4,7 @@ import { tabHandsCards, maxHints, buildDeck, buildPiles, colors } from '../datas
 import Header from './Header'
 import Player from './Player'
 import Modals from './modal/Modals'
-import GameAnalysis from '../brain/GameAnalysis'
+// import GameAnalysis from '../brain/GameAnalysis'
 import gsap from 'gsap'
 
 export const HanabiContext = React.createContext();
@@ -202,7 +202,7 @@ export default function App() {
     const deepPiles = JSON.parse(JSON.stringify(piles))
     setHistory((history) => {return [...history, {hints:hints, errors:errors, hands:deepHands, discard:[...discard], deck:[...deck], piles:deepPiles, turn:turn, lastTurn:lastTurn, points:points}]})
     const nthPlayer = id+1
-    console.log(`id: ${nthPlayer}, position: ${position+1}`)
+    // console.log(`id: ${nthPlayer}, position: ${position+1}`)
     const timeline = gsap.timeline({defaults: {duration: .3}, onComplete:() => {handleClickValidAfterAnim(id, position)}})
     timeline.to(`.player:nth-of-type(${nthPlayer})>.player--hand>.hand-card:nth-of-type(${(position+1)})`, {y: -10, opacity: .1, ease: 'power1.out'})
     for (let i=position+2; i<=nbCardsUseRef.current; i++) {
@@ -223,19 +223,21 @@ export default function App() {
   }
   function handleClickValidAfterAnim(id, position) {
     return
-    gsap.to(`.player:nth-of-type(${(id+1)})>.player--hand>.hand-card:nth-of-type(${(position+1)})`, {duration: 0, y: 0, opacity: 1})
-    let tempHands = [...hands]
-    const playedCard = tempHands[id].splice(position, 1)[0]
-    const newCard = draw()
-    if (newCard) {
-      tempHands[id].push(newCard)
-    }
-    setHands(tempHands)
-    const success = playCardOnTheBoard(playedCard)
-    if (success && playedCard.value === 5) {
-      setHints(hints+1)
-    }
-    // endTurn()  // Dans ce cas la fin de tour sera déclenchée par la modification de la pile de jeu ou de la défausse
+    // ###ANIM###
+    // gsap.to(`.player:nth-of-type(${(id+1)})>.player--hand>.hand-card:nth-of-type(${(position+1)})`, {duration: 0, y: 0, opacity: 1})
+    // let tempHands = [...hands]
+    // const playedCard = tempHands[id].splice(position, 1)[0]
+    // const newCard = draw()
+    // if (newCard) {
+    //   tempHands[id].push(newCard)
+    // }
+    // setHands(tempHands)
+    // const success = playCardOnTheBoard(playedCard)
+    // if (success && playedCard.value === 5) {
+    //   setHints(hints+1)
+    // }
+
+    // endTurn()  // Annulé, car dans ce cas la fin de tour sera déclenchée par la modification de la pile de jeu ou de la défausse. Ligne laissée volontairement pour que ce commentaire évite l'envie de mettre endTurn() à la fin de cette fonction.
   }
   function handleClickCancel(id, position) {
     const deepHands = JSON.parse(JSON.stringify(hands))
@@ -252,7 +254,8 @@ export default function App() {
     if (hints < maxHints) {
       setHints(hints+1)
     }
-    // endTurn()  // Dans ce cas la fin de tour sera déclenchée par la modification de la défausse
+
+    // endTurn()  // Annulé, car dans ce cas la fin de tour sera déclenchée par la modification de la pile de jeu ou de la défausse. Ligne laissée volontairement pour que ce commentaire évite l'envie de mettre endTurn() à la fin de cette fonction.
   }
 
   // ### Multiple time used actions
@@ -278,12 +281,12 @@ export default function App() {
       setModalReady(true)
     }
     else {
-      console.log("%cOn va prendre une décision...", "color:red")
+      // console.log("%cOn va prendre une décision...", "color:red")
       startIADecision()
     }
   }
   function endTurn() {
-    console.log("endTurn", points, errors, lastTurn, nbPlayers)
+    // console.log("endTurn", points, errors, lastTurn, nbPlayers)
     switch (true) {
       case (points === 25) :
         setGameStarted(false)
@@ -317,19 +320,19 @@ export default function App() {
         break
     }
   }
-  function playCardOnTheBoard(card) {
-    let newPiles = {...piles}
-    if (newPiles[card.color].length + 1 === card.value) {
-      newPiles[card.color].push(card)
-      setPiles(newPiles)
-      return true
-    }
-    else {
-      setErrors((errors) => {return errors+1})
-      discardCard(card)
-      return false
-    }
-  }
+  // function playCardOnTheBoard(card) {
+  //   let newPiles = {...piles}
+  //   if (newPiles[card.color].length + 1 === card.value) {
+  //     newPiles[card.color].push(card)
+  //     setPiles(newPiles)
+  //     return true
+  //   }
+  //   else {
+  //     setErrors((errors) => {return errors+1})
+  //     discardCard(card)
+  //     return false
+  //   }
+  // }
   function discardCard(card) {
     let tempDiscard = [...discard]
     tempDiscard.push(card)
@@ -370,12 +373,12 @@ export default function App() {
   }
 
   function iaPlayOrDiscard() {
-    const currentHand = new GameAnalysis(hands[turn])
+    // const currentHand = new GameAnalysis(hands[turn])
     // const bestPlayableCard = currentHand.getBestPlayableCard()
   }
 
-  function getBestPlayableCard() {
-  }
+  // function getBestPlayableCard() {
+  // }
 
   return (
     <>

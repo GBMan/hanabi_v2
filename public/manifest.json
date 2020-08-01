@@ -1,0 +1,31 @@
+{
+    "lang" : "fr",
+    "dir" : "ltr",
+    "name" : "Hanavi",
+    "short_name" : "hanabi",
+    "icons" :   [
+      {
+        "src": "./favicon.ico",
+        "type": "image/x-icon",
+        "sizes": "64x64 32x32 24x24 16x16",
+        "purpose": "any maskable"
+      },
+      {
+        "src" : "./imgs/icons/android-icon-192x192.png",
+        "type" : "image\/png",
+        "sizes" : "192x192",
+        "purpose" : "any maskable"
+      },
+      {
+        "src": "./imgs/icons/icon-512x512.png",
+        "type": "image/png",
+        "sizes": "512x512",
+        "purpose": "any maskable"
+      }
+    ],
+    "theme_color" : "#1a1a1a",
+    "background_color" : "#1a1a1a",
+    "start_url" : "./index.html",
+    "display" : "standalone",
+    "orientation" : "natural"
+   } 

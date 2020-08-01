@@ -15,7 +15,6 @@ export default function Player(props) {
 
     const { handleClickValue, handleClickColor, handleClickValid, handleClickCancel } = useContext(HanabiContext)
 
-    const help = true
     const hand = hands[id]
 
     function onClickValue(value) {

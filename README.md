@@ -1,6 +1,7 @@
 This project is a simulation of the card game Hanabi made by Antoine Bauza.
 
 The IA is under development, but the game is a playable by human players.
+The code is modified to avoid the IAs until it's completed. Search for the ###IA### tag.
 
 # INSTALL
 
